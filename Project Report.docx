@@ -1,0 +1,313 @@
+# PROJECT REPORT
+
+# SECURE LOGIN SYSTEM USING FLASK, SQLITE AND BCRYPT
+
+---
+
+## Submitted By
+
+Kishore L S
+Cybersecurity Intern
+
+---
+
+# 1. Abstract
+
+The Secure Login System is a web-based authentication application developed using Python Flask, SQLite, and bcrypt. The project provides a secure mechanism for user registration and login while protecting user credentials from common security threats.
+
+The system stores passwords in encrypted hash format using bcrypt, preventing exposure of plain text passwords. It also protects against SQL Injection attacks by using parameterized SQL queries. Flask sessions are used to maintain user authentication and manage access to protected pages.
+
+This project demonstrates essential cybersecurity concepts and provides a foundation for developing secure web applications.
+
+---
+
+# 2. Introduction
+
+Authentication is a fundamental component of modern web applications. Many systems require users to create accounts and log in to access personalized services. However, insecure authentication methods can expose sensitive user information and allow unauthorized access.
+
+The Secure Login System addresses these challenges by implementing secure password storage, protected database queries, session handling, and controlled access to application resources.
+
+The project is developed using Python Flask as the backend framework, SQLite as the database, and bcrypt for password hashing.
+
+---
+
+# 3. Problem Statement
+
+Traditional login systems often store passwords in plain text and execute unsafe SQL queries, making them vulnerable to cyber attacks such as data theft and SQL Injection.
+
+The goal of this project is to develop a secure authentication system that protects user credentials and allows only authorized users to access the application.
+
+---
+
+# 4. Objectives
+
+The major objectives of this project are:
+
+* To create a secure user registration system.
+* To provide reliable user authentication.
+* To secure passwords using bcrypt hashing.
+* To prevent SQL Injection attacks.
+* To maintain authenticated sessions.
+* To implement a secure logout mechanism.
+* To generate login activity reports.
+
+---
+
+# 5. System Requirements
+
+## Hardware Requirements
+
+* Processor: Intel i3 or higher
+* RAM: Minimum 4 GB
+* Storage: 500 MB free space
+* Internet connection (optional)
+
+## Software Requirements
+
+* Operating System: Windows/Linux/macOS
+* Python 3.x
+* Flask Framework
+* SQLite Database
+* bcrypt Library
+* Web Browser (Chrome, Edge, Firefox)
+
+---
+
+# 6. Technologies Used
+
+## Python
+
+Python is the programming language used to develop the backend logic of the application.
+
+## Flask
+
+Flask is a lightweight Python web framework used to create routes, handle user requests, manage sessions, and connect with the database.
+
+## SQLite
+
+SQLite is a lightweight relational database that stores user account information such as usernames and password hashes.
+
+## bcrypt
+
+bcrypt is a password hashing algorithm that securely converts passwords into irreversible encrypted hashes with salt.
+
+---
+
+# 7. System Architecture
+
+The working architecture of the Secure Login System is shown below:
+
+User (Browser)
+|
+v
+HTML Interface
+|
+v
+Flask Application Server
+|
+v
+Authentication Logic
+|
+v
+SQLite Database
+|
+v
+User Data & Password Hashes
+
+---
+
+# 8. Methodology
+
+The system works through the following steps:
+
+### User Registration
+
+1. User enters a username and password.
+2. The password is converted into a bcrypt hash.
+3. The username and hashed password are stored in the SQLite database.
+
+### User Login
+
+1. The user provides login credentials.
+2. The system retrieves the stored password hash.
+3. bcrypt compares the entered password with the stored hash.
+4. If valid, a user session is created.
+
+### Session Handling
+
+* Flask sessions store user authentication information.
+* Only authenticated users can access the dashboard.
+
+### Logout
+
+* The session data is removed.
+* The user is redirected to the login page.
+
+---
+
+# 9. Database Design
+
+Database Name: users.db
+
+Table: users
+
+| Field Name | Data Type | Description            |
+| ---------- | --------- | ---------------------- |
+| id         | INTEGER   | Unique User ID         |
+| username   | TEXT      | Username of the user   |
+| password   | BLOB      | bcrypt hashed password |
+
+---
+
+# 10. Security Features Implemented
+
+## Password Hashing
+
+Passwords are never stored in plain text. bcrypt converts passwords into secure hashes with randomly generated salt.
+
+## SQL Injection Prevention
+
+The application uses parameterized SQL queries using placeholders (?) to separate SQL commands from user input.
+
+Example:
+
+SELECT password FROM users WHERE username = ?
+
+This prevents attackers from executing malicious SQL commands.
+
+## Session Management
+
+Authenticated users are identified using Flask sessions, preventing unauthorized access to protected pages.
+
+## Secure Logout
+
+The session is destroyed after logout, ensuring that users cannot access the dashboard without logging in again.
+
+---
+
+# 11. Testing and Results
+
+## Test Case 1: User Registration
+
+Input:
+
+* New username
+* Password
+
+Expected Result:
+
+* User account created successfully.
+
+Actual Result:
+
+* Account created and stored in the database.
+
+Status: PASS
+
+---
+
+## Test Case 2: Valid Login
+
+Input:
+
+* Correct username and password
+
+Expected Result:
+
+* User redirected to dashboard.
+
+Actual Result:
+
+* Login successful and session created.
+
+Status: PASS
+
+---
+
+## Test Case 3: Invalid Login
+
+Input:
+
+* Wrong password
+
+Expected Result:
+
+* Access denied.
+
+Actual Result:
+
+* "Invalid Credentials" message displayed.
+
+Status: PASS
+
+---
+
+## Test Case 4: SQL Injection Attempt
+
+Input:
+admin' OR '1'='1
+
+Expected Result:
+
+* Login should fail.
+
+Actual Result:
+
+* Application rejects the malicious input due to parameterized queries.
+
+Status: PASS
+
+---
+
+# 12. Advantages
+
+* Easy to develop and maintain.
+* Lightweight database support.
+* Secure password storage.
+* Protection against SQL Injection.
+* Efficient user session management.
+* Suitable for small and medium web applications.
+
+---
+
+# 13. Limitations
+
+* Does not include email verification.
+* Does not support password recovery.
+* Does not implement Two-Factor Authentication.
+* Suitable mainly for small-scale applications.
+
+---
+
+# 14. Future Enhancements
+
+The system can be improved by adding:
+
+* Two-Factor Authentication (2FA).
+* Email-based account verification.
+* Password reset functionality.
+* Strong password policy enforcement.
+* Account lock after multiple failed login attempts.
+* HTTPS deployment.
+* Detailed user activity logs.
+
+---
+
+# 15. Conclusion
+
+The Secure Login System successfully demonstrates secure authentication practices using Flask, SQLite, and bcrypt. The system protects user credentials through password hashing, prevents SQL Injection using parameterized queries, and manages authenticated users through sessions.
+
+This project serves as a basic but effective model for developing secure web applications and understanding fundamental cybersecurity principles.
+
+---
+
+# 16. References
+
+1. Flask Official Documentation.
+2. SQLite Documentation.
+3. bcrypt Password Hashing Documentation.
+4. Python Official Documentation.
+
+---
+
+# Thank You
